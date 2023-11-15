@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg';
 import menuIcon from '../assets/icon _hamburger menu.svg'
 
 const links = [
-  { href: '', name: 'Home' },
+  { href: '/', name: 'Home' },
   { href: '', name: 'About' },
   { href: '', name: 'Menu' },
-  { href: '', name: 'Reservations' },
+  { href: '/reservations', name: 'Reservations' },
   { href: '', name: 'Order Online' },
   { href: '', name: 'Login' },
 ];
@@ -22,11 +23,11 @@ function Nav() {
         <img src={menuIcon} alt="Menu expand icon" />
       </button>
       <ul className={isMenuExpanded ? 'expanded' : ''}>
-        {links.map((item) =>
-          <li>
-            <a href={item.href}>
+        {links.map((item, index) =>
+          <li key={index}>
+            <Link to={item.href} onClick={() => setIsMenuExpanded(false)}>
               {item.name}
-            </a>
+            </Link>
           </li>
         )}
       </ul>
