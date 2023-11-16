@@ -1,7 +1,8 @@
+import Hero from '../components/Hero'
 function Home() {
     return (
       <main>
-        <p>This is the home page</p>
+        <Hero/>
       </main>
     );
   };
