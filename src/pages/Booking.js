@@ -1,17 +1,19 @@
 import BookingForm from '../components/BookingForm'
 import { useReducer } from 'react';
+import { fetchAPI, submitAPI } from '../api'
 
 function Booking() {
-    const updateTimes = (resDate) => initializeTimes()
-    
-    const initializeTimes = () => ['17:00','18:00','19:00','20:00','21:00','22:00']
+    const updateTimes = ( times, resDate) => fetchAPI(resDate);
+    const initializeTimes = () => fetchAPI(new Date());
+    const submitForm = (formData) => submitAPI(formData);
 
     const [availableTimes, dispatchResDateChange] = useReducer(updateTimes, initializeTimes())
 
     return (
         <BookingForm
         availableTimes={availableTimes}
-        dispatchResDateChange={dispatchResDateChange} />
+        dispatchResDateChange={dispatchResDateChange}
+        submitForm={submitForm} />
     );
   };
   

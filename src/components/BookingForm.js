@@ -1,18 +1,26 @@
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
 
-function BookingForm({ availableTimes, dispatchResDateChange }) {
+function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
 
     const [resDate, setResDate] = useState('');
     const [resTime, setResTime] = useState('');
     const [resNumGuests, setResNumGuests] = useState('');
+    const navigate = useNavigate();
 
     function handleResDateChange(e) {
         setResDate(e.target.value);
         dispatchResDateChange(e.target.value);
     }
 
+    function handleFormSubmit(e) {
+        e.preventDefault();
+        const formData = { resDate, resTime, resNumGuests }
+        if(submitForm(formData)) navigate('/reservation-confirmation')
+    }
+
     return (
-        <form >
+        <form onSubmit={handleFormSubmit}>
             <label htmlFor="res-date">Choose date</label>
             <input type="date" id="res-date" value={resDate} onChange={handleResDateChange} />
             <label htmlFor="res-time">Choose time</label>
