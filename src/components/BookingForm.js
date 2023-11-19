@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useNavigate } from 'react-router-dom';
 import FormField from './FormField'
 
 function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
@@ -11,7 +10,6 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
     const [resDate, setResDate] = useState(minDate);
     const [resTime, setResTime] = useState(availableTimes[0]);
     const [resNumGuests, setResNumGuests] = useState(minGuests);
-    const navigate = useNavigate();
 
     function handleResDateChange(e) {
         setResDate(e.target.value);
@@ -20,16 +18,13 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
 
     function handleFormSubmit(e) {
         e.preventDefault();
-        const formData = { resDate, resTime, resNumGuests }
-        if (submitForm(formData)) navigate('/reservation-confirmation')
+        submitForm({ resDate, resTime, resNumGuests })
     }
 
     const isDateValid = new Date(`${resDate}T00:00`) >= minDate
     const isTimeValid = resTime.length > 0
     const isNumGuestsValid = resNumGuests >= minGuests && resNumGuests <= maxGuests
     const isFormValid = isDateValid && isTimeValid && isNumGuestsValid
-
-    //console.log(`min=${minDate} res=${resDate} res=${new Date(`${resDate}T00:00`)}`)
 
     return (
         <form onSubmit={handleFormSubmit}>
@@ -40,6 +35,7 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
                 <input
                     type="date"
                     id="res-date"
+                    data-testid="date"
                     min={minDate}
                     value={resDate}
                     required={true}
@@ -51,6 +47,7 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
                 <label htmlFor="res-time">Choose time</label>
                 <select
                     id="res-time"
+                    data-testid="time"
                     value={resTime}
                     required={true}
                     onChange={(e) => setResTime(e.target.value)}>
@@ -66,6 +63,7 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
                     min={minGuests}
                     max={maxGuests}
                     id="guests"
+                    data-testid="guests"
                     required={true}
                     value={resNumGuests}
                     onChange={(e) => setResNumGuests(e.target.value)} />
@@ -79,7 +77,7 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
             </FormField>
             <button type="submit" value="Make Your reservation" disabled={!isFormValid}>
                 Make your reservation
-                </button>
+            </button>
         </form>
     )
 }
