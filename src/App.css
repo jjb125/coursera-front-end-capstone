@@ -5,6 +5,7 @@
   --clr-sec2: #FBDABB;
   --clr-hl1: #EDEFEE;
   --clr-hl2: #333333;
+  --clr-err: hsl(0, 100%, 40%);
   --br: 16px;
   --br-05: 8px;
   /* Border radius */
@@ -205,7 +206,7 @@ form > .form-field {
 
 .form-field > p {
   font-size: 10pt;
-  color: red;
+  color: var(--clr-err);
 }
 
 form button {

@@ -75,7 +75,9 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
                     <option>Anniversary</option>
                 </select>
             </FormField>
-            <button type="submit" value="Make Your reservation" disabled={!isFormValid}>
+            <button
+                type="submit"
+                disabled={!isFormValid}>
                 Make your reservation
             </button>
         </form>
