@@ -6,6 +6,7 @@
   --clr-hl1: #EDEFEE;
   --clr-hl2: #333333;
   --br: 16px;
+  --br-05: 8px;
   /* Border radius */
   --fs-xl: 40;
   /*  */
@@ -53,22 +54,59 @@ a {
   text-decoration: none;
 }
 
+
+button,
+a,
+input,
+select,
+label {
+  padding: 0.5rem;
+  color: var(--clr-hl2);
+  font-family: var(--ff-1);
+  font-weight: bold;
+  transition: background-color 0.1s;
+}
+
+button,
+a,
+input,
+select {
+  /* color: var(--clr-pri1); */
+  background-color: var(--clr-hl1);
+  border: 2px solid var(--clr-pri1);
+  border-radius: var(--br-05);
+}
+
 button,
 a {
   max-width: fit-content;
   padding: 1rem 1.5rem;
   border-radius: var(--br);
-  color: #000000;
-  font-family: var(--ff-1);
-  font-weight: bold;
-  background-color: var(--clr-pri2);
-  transition: background-color 0.1s;
+  color: var(--clr-pri1);
+  background-color: var(--clr-hl1);
 }
 
 button:hover,
 a:hover {
+  background-color: var(--clr-pri2);
+  cursor: pointer;
+}
+
+button:disabled {
+  color: #888888;
+  background-color: var(--clr-hl1);
+  border-color: var(--clr-hl1);
+  cursor: not-allowed;
+}
+
+.btn-alt {
+  color: var(--clr-hl2);
+  background-color: var(--clr-pri2);
+}
+.btn-alt:hover {
   background-color: var(--clr-sec1);
 }
+
 
 li {
   list-style-type: none;
@@ -107,6 +145,7 @@ nav a {
   display: block;
   padding: 1rem;
   color: var(--clr-pri1);
+  border: 0;
   border-radius: 0;
   background-color: transparent;
   transition: background-color 0.3s;
@@ -148,6 +187,29 @@ nav a:hover {
   width: 16rem;
   border-radius: var(--br);
   z-index: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  gap: 1rem;
+}
+
+form > .form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-field > p {
+  font-size: 10pt;
+  color: red;
+}
+
+form button {
+  font-size: large;
 }
 
 /* Desktop and wider screens */

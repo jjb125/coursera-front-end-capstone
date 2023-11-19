@@ -1,11 +1,16 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
+import FormField from './FormField'
 
 function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
 
-    const [resDate, setResDate] = useState('');
-    const [resTime, setResTime] = useState('');
-    const [resNumGuests, setResNumGuests] = useState('');
+    const minDate = new Date(new Date().toLocaleDateString())  // today
+    const minGuests = 1
+    const maxGuests = 10
+
+    const [resDate, setResDate] = useState(minDate);
+    const [resTime, setResTime] = useState(availableTimes[0]);
+    const [resNumGuests, setResNumGuests] = useState(minGuests);
     const navigate = useNavigate();
 
     function handleResDateChange(e) {
@@ -16,25 +21,65 @@ function BookingForm({ availableTimes, dispatchResDateChange, submitForm }) {
     function handleFormSubmit(e) {
         e.preventDefault();
         const formData = { resDate, resTime, resNumGuests }
-        if(submitForm(formData)) navigate('/reservation-confirmation')
+        if (submitForm(formData)) navigate('/reservation-confirmation')
     }
+
+    const isDateValid = new Date(`${resDate}T00:00`) >= minDate
+    const isTimeValid = resTime.length > 0
+    const isNumGuestsValid = resNumGuests >= minGuests && resNumGuests <= maxGuests
+    const isFormValid = isDateValid && isTimeValid && isNumGuestsValid
+
+    //console.log(`min=${minDate} res=${resDate} res=${new Date(`${resDate}T00:00`)}`)
 
     return (
         <form onSubmit={handleFormSubmit}>
-            <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" value={resDate} onChange={handleResDateChange} />
-            <label htmlFor="res-time">Choose time</label>
-            <select id="res-time" value={resTime} onChange={(e) => setResTime(e.target.value)}>
-                {availableTimes.map(time => <option key={time}>{time}</option>)}
-            </select>
-            <label htmlFor="guests" value={resNumGuests} onChange={(e) => setResNumGuests(e.target.value)}>Number of guests</label>
-            <input type="number" placeholder="1" min="1" max="10" id="guests" />
-            <label htmlFor="occasion">Occasion</label>
-            <select id="occasion">
-                <option>Birthday</option>
-                <option>Anniversary</option>
-            </select>
-            <input type="submit" value="Make Your reservation" />
+            <FormField
+                hasError={!isDateValid}
+                errorMessage={`Please enter a date on or after today`}>
+                <label htmlFor="res-date">Choose date</label>
+                <input
+                    type="date"
+                    id="res-date"
+                    min={minDate}
+                    value={resDate}
+                    required={true}
+                    onChange={handleResDateChange} />
+            </FormField>
+            <FormField
+                hasError={!isTimeValid}
+                errorMessage={'Please enter a valid time'}>
+                <label htmlFor="res-time">Choose time</label>
+                <select
+                    id="res-time"
+                    value={resTime}
+                    required={true}
+                    onChange={(e) => setResTime(e.target.value)}>
+                    {availableTimes.map(time => <option key={time}>{time}</option>)}
+                </select>
+            </FormField>
+            <FormField
+                hasError={!isNumGuestsValid}
+                errorMessage={`Please enter a value between ${minGuests} and ${maxGuests}`}>
+                <label htmlFor="guests" >Number of guests</label>
+                <input
+                    type="number"
+                    min={minGuests}
+                    max={maxGuests}
+                    id="guests"
+                    required={true}
+                    value={resNumGuests}
+                    onChange={(e) => setResNumGuests(e.target.value)} />
+            </FormField>
+            <FormField>
+                <label htmlFor="occasion">Occasion</label>
+                <select id="occasion">
+                    <option>Birthday</option>
+                    <option>Anniversary</option>
+                </select>
+            </FormField>
+            <button type="submit" value="Make Your reservation" disabled={!isFormValid}>
+                Make your reservation
+                </button>
         </form>
     )
 }
