@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.svg';
 import menuIcon from '../assets/icon _hamburger menu.svg'
+import './Nav.css'
 
-const links = [
+export const links = [
   { href: '/', name: 'Home' },
   { href: '', name: 'About' },
   { href: '', name: 'Menu' },
@@ -12,7 +13,7 @@ const links = [
   { href: '', name: 'Login' },
 ];
 
-function Nav() {
+export default function Nav() {
 
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
 
@@ -34,5 +35,3 @@ function Nav() {
     </nav>
   );
 };
-
-export default Nav;

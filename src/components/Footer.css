@@ -1,0 +1,27 @@
+footer {
+    background-color: var(--clr-pri1);
+    /* color: var(--clr-hl2); */
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding-block: 2rem;
+}
+
+footer > div {
+    display: flex;
+    flex-direction: column;
+}
+
+footer h4 {
+    padding-bottom: 1rem;
+}
+
+footer li {
+    padding: 0.25rem 0;
+}
+
+footer img {
+    background-color: white;
+    padding: 0.15rem
+}
