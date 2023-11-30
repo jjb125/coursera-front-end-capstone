@@ -1,3 +1,5 @@
+import { faMotorcycle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
 
 export default function SpecialsCard({meal}) {
@@ -11,6 +13,8 @@ export default function SpecialsCard({meal}) {
             <p>{meal.description}</p>
             <Link to={''}>
                 Order a delivery
+                &nbsp;
+                <FontAwesomeIcon icon ={faMotorcycle} />
             </Link>
         </article>
     );

@@ -26,7 +26,7 @@
   --fw-regular: 400;
   --desktop-min: 960px;
   --p-main-section: 4rem 8rem;
-  --p-main-section-mobile: 2rem 4rem;
+  --p-main-section-mobile: 2rem 4vw;
 
 }
 
@@ -85,7 +85,7 @@ h3 {
 /* Paragraph text, Karla, regular 16pt, 1.5 line height, max 65ch */
 p {
   line-height: 1.5;
-  font-size: var(--fs-p);
+  font-size: calc(var(--fs-p) - 2pt);
   font-weight: var(--fw-regular);
   max-width: 65ch
 }
@@ -145,7 +145,7 @@ li {
   list-style-type: none;
 }
 
-section, footer {
+section {
   padding: var(--p-main-section-mobile);
   /* margin-bottom: 2rem; */
 }
@@ -174,8 +174,10 @@ form button {
 }
 
 @media (min-width: 960px) {
-  section, footer {
+  p {
+    font-size: var(--fs-p);
+  }
+  section {
     padding: var(--p-main-section);
-    ;
   }
 }

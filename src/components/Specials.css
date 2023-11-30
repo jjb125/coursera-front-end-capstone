@@ -61,7 +61,8 @@
 }
 
 .specials-card > a {
-    
+    padding: var(--p-card);
+    /* align-self: center; */
 }
 
 @media (min-width: 960px) {

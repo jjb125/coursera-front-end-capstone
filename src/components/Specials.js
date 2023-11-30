@@ -31,7 +31,7 @@ const meals = [
   },
 ];
 
-function Specials() {
+export default function Specials() {
   return (
     <section className='specials'>
       <div className='specials-header'>
@@ -45,5 +45,3 @@ function Specials() {
     </section>
   );
 };
-
-export default Specials;

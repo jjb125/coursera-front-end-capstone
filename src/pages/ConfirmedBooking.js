@@ -1,6 +1,8 @@
+import './ConfirmedBooking.css'
+
 function ConfirmedBooking() {
     return (
-        <p>Your reservation has been booked.</p>
+        <h3>Your reservation has been booked.</h3>
     );
   };
   

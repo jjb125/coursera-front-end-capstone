@@ -1,0 +1,13 @@
+main > h2 {
+    text-align: center;
+    margin: 2rem;
+    padding: 2rem;
+    color: var(--clr-hl1);
+    background-color: var(--clr-pri1);
+}
+
+@media (min-width: 960px) {
+    main > h2 {
+        margin: 4rem;
+    }
+}
