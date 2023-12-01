@@ -5,7 +5,6 @@
     align-items: center;
     gap: 1rem;
     background-color: var(--clr-pri1);
-    /* padding: 2rem; */
     --img-w: 16rem;
 }
 
@@ -33,7 +32,6 @@
 .hero-right img {
     width: var(--img-w);
     border-radius: var(--br);
-    z-index: 1;
 }
 
 @media (min-width: 760px) {

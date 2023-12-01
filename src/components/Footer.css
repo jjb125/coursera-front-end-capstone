@@ -21,7 +21,7 @@ footer h5 {
     font-size: 14pt;
 }
 
-ul {
+footer ul {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -53,7 +53,7 @@ footer img {
     footer > div {
         align-items: start;
     }
-    ul {
+    footer ul {
         align-items: start;
     }
   }

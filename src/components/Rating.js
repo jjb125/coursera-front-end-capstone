@@ -28,7 +28,7 @@ export default function Rating({ rating }) {
     }
 
     return (
-        <div style={{ display: 'flex' }}>
+        <div className="rating" style={{ display: 'flex' }}>
             {output}
         </div>
     );

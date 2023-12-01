@@ -3,7 +3,8 @@
     --img-w: 233px;
     --img-h: 300px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(var(--img-w) + var(--img-p) + var(--img-p) ), 1fr));
+    grid-template-columns: repeat(auto-fit, 
+    minmax(calc(var(--img-w) + var(--img-p) + var(--img-p) ), 1fr));
     gap: 1rem;
 }
 

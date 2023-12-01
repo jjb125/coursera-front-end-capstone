@@ -19,6 +19,7 @@ export default function Nav() {
 
   return (
     <nav>
+      {isMenuExpanded ? <div className='overlay'/> : ''}
       <img src={logo} alt="Little Lemon logo" width={140} height={40} />
       <button onClick={() => setIsMenuExpanded(!isMenuExpanded)}>
         <img src={menuIcon} alt="Menu expand icon" />

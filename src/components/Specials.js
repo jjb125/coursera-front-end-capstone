@@ -36,7 +36,7 @@ export default function Specials() {
     <section className='specials'>
       <div className='specials-header'>
         <h2>This week's specials!</h2>
-        <Link className='btn btn-alt' to=''>
+        <Link className='btn' to=''>
           Online Menu
         </Link>
       </div>

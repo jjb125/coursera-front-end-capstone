@@ -4,7 +4,6 @@
     align-items: start;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1rem;
-    /* padding-inline: var(--p-main-section-width-mobile); */
 }
 
 .specials-header {
@@ -61,8 +60,19 @@
 }
 
 .specials-card > a {
+    text-align: center;
     padding: var(--p-card);
-    /* align-self: center; */
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    border-radius: var(--br-card);
+}
+
+.specials-card > a:hover {
+    border-color: var(--clr-pri1);
+}
+
+.specials-card svg {
+    font-size: 1rem;
 }
 
 @media (min-width: 960px) {

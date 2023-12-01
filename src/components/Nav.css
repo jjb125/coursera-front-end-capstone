@@ -1,36 +1,53 @@
 nav {
+    height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding: 1rem;
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
 }
 
-nav>img {
+nav > img {
     grid-row: 1;
     grid-column: 2;
     justify-self: center;
 }
 
-nav>ul {
-    grid-row: 2;
+nav > button {
+    grid-row: 1;
     grid-column: 1;
-    display: none;
-    flex-direction: column;
-}
-
-nav>ul.expanded {
-    display: flex;
-    position: absolute;
-    top: 92px;
-    width: 50%;
-    /* z-index: 0; */
-    background-color: var(--clr-hl1);
-}
-
-nav>button {
     justify-self: start;
     background: none;
     border: none;
+}
+
+nav > ul {
+    grid-row: 2;
+    grid-column: 1;
+    position: absolute;
+    top: var(--h-header);
+    width: 200px;
+    left: -200px;
+    z-index: 10;
+    background-color: var(--clr-hl1);
+    display: flex;
+    flex-direction: column;
+    padding-block: 1rem;
+    transition: left ease-in-out 0.2s;
+}
+
+nav > ul.expanded {
+    left: 10px;
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: var(--h-header);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background-color: rgba(0,0,0,0.2);
+    backdrop-filter: blur(2px);
 }
 
 nav a {
@@ -51,8 +68,8 @@ nav a:hover {
 @media (min-width: 960px) {
 
     nav {
-        grid-template-columns: auto auto;
         padding-inline: 4rem;
+        grid-template-columns: auto auto;
     }
 
     nav>img {
@@ -68,8 +85,15 @@ nav a:hover {
         grid-row: 1;
         grid-column: 2;
         justify-self: end;
-        display: flex;
+        position: static;
+        width: auto;
+        background-color: transparent;
         flex-direction: row;
         gap: 1rem;
+        padding-block: 0;
+    }
+
+    .overlay {
+        display: none;
     }
 }

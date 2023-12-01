@@ -19,15 +19,16 @@
   --fs-section: 18pt;
   --fs-specials: 16pt;
   --fs-card: 18pt;
-  --fs-p: 16pt;
+  --fs-p: 14pt;
   --fw-extra-bold: 800;
   --fw-bold: 600;
   --fw-medium: 500;
   --fw-regular: 400;
   --desktop-min: 960px;
-  --p-main-section: 4rem 8rem;
-  --p-main-section-mobile: 2rem 4vw;
-
+  --p-main-section: 2rem 4vw;
+  --w-max: 1280px;
+  --h-header: 60px;
+  --h-header-scrolled: 60px;
 }
 
 *,
@@ -39,7 +40,7 @@
 }
 
 body {
-  max-width: 1280px;
+  max-width: var(--w-max);
   margin-inline: auto;
   font-family: var(--ff-2);
 }
@@ -113,15 +114,24 @@ select {
   border-radius: var(--br-05);
 }
 
+input,
+select {
+    width: 12rem;
+    height: 3rem;
+    font-family: var(--ff-2);
+}
+
 button, .btn {
-  max-width: fit-content;
   padding: 1rem 1.5rem;
   border-radius: var(--br);
-  color: var(--clr-pri1);
-  background-color: var(--clr-hl1);
+  color: var(--clr-hl1);
+  background-color: var(--clr-pri1);
+  font-weight: var(--fw-bold);
+  transition: text-color 0.3s, background-color 0.3s;
 }
 
 button:hover, .btn:hover {
+  color: var(--clr-pri1);
   background-color: var(--clr-pri2);
   cursor: pointer;
 }
@@ -138,6 +148,7 @@ button:disabled, .btn:disabled {
   background-color: var(--clr-pri2);
 }
 .btn-alt:hover {
+  color: var(--clr-hl2);
   background-color: var(--clr-sec1);
 }
 
@@ -145,9 +156,31 @@ li {
   list-style-type: none;
 }
 
+header {
+  position: fixed;
+  width: 100%;
+  max-width: var(--w-max);
+  top: 0;
+  height: var(--h-header);
+  z-index: 100;
+  /* border-bottom: 1px solid transparent; */
+  transition: all 0.1s;
+}
+
+header.scrolled {
+  height: var(--h-header-scrolled);
+  background-color: rgba(240,240,240,0.95);
+  /* border-color: var(--clr-pri1); */
+}
+
+main {
+  /* position: relative; */
+  margin-top: var(--h-header);
+  /* margin-bottom: 60px; */
+}
+
 section {
-  padding: var(--p-main-section-mobile);
-  /* margin-bottom: 2rem; */
+  padding: var(--p-main-section);
 }
 
 form {
@@ -174,10 +207,10 @@ form button {
 }
 
 @media (min-width: 960px) {
-  p {
-    font-size: var(--fs-p);
-  }
-  section {
-    padding: var(--p-main-section);
+  :root {
+    --p-main-section: 4rem 8rem;
+    --h-header: 110px;
+    --h-header-scrolled: 55px;
+    --fs-p: 16pt;
   }
 }
